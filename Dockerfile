@@ -13,7 +13,6 @@ COPY target/ywti-wa2021-1.0-SNAPSHOT.war /usr/local/tomcat/webapps/ROOT.war
 
 # 4. Copy the context configuration (We will create this file next)
 # This file tells Tomcat where the database lives
-COPY context.xml /usr/local/tomcat/conf/context.xml
-
+COPY src/main/webapp/META-INF/context.xml /usr/local/tomcat/conf/context.xml
 EXPOSE 8080
 CMD ["catalina.sh", "run"]
