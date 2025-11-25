@@ -24,7 +24,7 @@ import it.unipd.dei.yourwaytoitaly.utils.ErrorCode;
  * @version 1.0
  * @since 1.0
  */
-// another comment
+// another another comment
 
 public class CompanyAuthenticationCheck implements Filter {
 
