@@ -35,5 +35,24 @@ pipeline {
                 sh 'mvn package -DskipTests' 
             }
         }
+        stage('Build & Push Docker') {
+            steps {
+                script {
+                    // Uses the credentials ID you just created: 'docker-hub-credentials'
+                    docker.withRegistry('https://index.docker.io/v1/', 'docker-hub-credentials') {
+                        
+                        // Replace 'YOUR_USERNAME' with your actual Docker Hub username!
+                        // We tag the image with the Build ID so every version is unique
+                        def customImage = docker.build("anirachibane/ywti-project:${env.BUILD_ID}")
+                        
+                        // Push the image to Docker Hub
+                        customImage.push()
+                        
+                        // Also push it as 'latest' so it's easy to find
+                        customImage.push('latest')
+                    }
+                }
+            }
+        }
     }
 }
