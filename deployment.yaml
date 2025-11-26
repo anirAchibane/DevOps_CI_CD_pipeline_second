@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ywti-deployment
+spec:
+  replicas: 2           # On utilise deux pods
+  selector:
+    matchLabels:
+      app: ywti-app
+  template:
+    metadata:
+      labels:
+        app: ywti-app
+    spec:
+      containers:
+      - name: ywti-container
+        image: anirachibane/ywti-project:latest  # Your image
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
